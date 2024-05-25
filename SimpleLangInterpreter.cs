@@ -18,11 +18,12 @@ namespace SimpleLangInterpreter
                 int wiz = foo + 25; 
                 "; // Example input
 
-            var input2 = "int foo = (45 - 5 + (5*4))/20; int bar = foo+20;"; 
+            var input2 = "int foo = (45 - 5 + (5*4))/20; int bar = foo+20;"; // answers: foo=3 bar=23
+            var input3 = "int foo = (45 - 5 + (5*4))/20; real bar = foo+20.1;";// answers: foo=3 bar=23.1
 
             string input9 = "int bar = 66; class MyClass1 { int x; string y; }; MyClass1 obj";
 
-            var inputStream = new AntlrInputStream(input2);
+            var inputStream = new AntlrInputStream(input3);
             var lexer = new SimpleLangLexer(inputStream);
             var commonTokenStream = new CommonTokenStream(lexer);
             var parser = new SimpleLangParser(commonTokenStream);

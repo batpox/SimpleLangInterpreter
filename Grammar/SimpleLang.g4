@@ -14,6 +14,7 @@ varDecl: type ID ('=' expr)? ';' ;
 assign: varRef '=' expr ';' ;
 
 type:   'int'
+    |   'real'
     |   'string'
     |   'int' '[' dimensions ']'
     |   'real' '[' dimensions ']'
