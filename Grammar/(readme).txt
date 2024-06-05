@@ -18,6 +18,7 @@ visitor code, such as 'SimpleLangCustomVisitor.cs'
 
 *NEVER* manually alter the generated code!
 
-
+java -version => java version "1.8.0_411"
+Java(TM) SE Runtime Environment (build 1.8.0_411-b09)
 
 

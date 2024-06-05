@@ -2,49 +2,41 @@ grammar SimpleLang;
 
 prog:   stat+ ;
 
-stat:   varDecl
-    |   assign
-    |   expr
-    |   methodDecl
-    |   classDecl
+stat:   varDecl 
+    |   assign 
+    |   classDecl 
+    |   expr 
+    |   methodDecl 
     ;
 
-varDecl: type ID ('=' expr)? ';' ;
 
-assign: varRef '=' expr ';' ;
-
-type:   'int'
-    |   'real'
-    |   'string'
-    |   'int' '[' dimensions ']'
-    |   'real' '[' dimensions ']'
-    |   'string' '[' dimensions ']'
-    |   ID // for class types
-    ;
-
-dimensions:   INT (',' INT)* ;
+classDecl: 'Class' ID '{' classVarDecl* '}' ;
+classVarDecl: type ID ('[' dimensions ']')? ';' ;
+varDecl: type ID ('[' dimensions ']')? ('=' expr)? ';' ;
+assign: varReference ('[' indexList ']')? '=' expr ';' ;
 
 methodDecl: type ID '(' argList? ')' block ;
+type:   'int' | 'real' | 'string' | ID ;
+
+
+dimensions:   INT (',' INT)* ;
+indexList: expr (',' expr)* ;
 
 argList: type ID (',' type ID)* ;
 
 block: '{' stat* '}' ;
 
-classDecl: 'class' ID '{' classVarDecl* '}' ;
 
-classVarDecl: type ID ';' ;
-
-expr:   expr ('*'|'/') expr
-    |   expr ('+'|'-') expr
-    |   varRef
-    |   INT
-    |   REAL
-    |   STRING
-    |   varRef '[' expr ']'
-    |   '(' expr ')'
+expr:   expr op=('*'|'/') expr  # MulDiv
+    |   expr op=('+'|'-') expr  # AddSub
+    |   INT                     # Int
+    |   REAL                    # Real
+    |   STRING                  # Str
+    |   varReference            # VarRefLabel         
+    |   '(' expr ')'            # Parens
     ;
 
-varRef: ID ('.' ID)* ;
+varReference: ID ('.' ID)* ('[' indexList ']')* ;
 
 ID:     [a-zA-Z_][a-zA-Z_0-9]* ;
 INT:    [0-9]+ ;

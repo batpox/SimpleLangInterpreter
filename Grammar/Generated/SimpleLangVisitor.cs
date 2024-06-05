@@ -44,6 +44,18 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitStat([NotNull] SimpleLangParser.StatContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitClassDecl([NotNull] SimpleLangParser.ClassDeclContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="SimpleLangParser.varDecl"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -55,6 +67,12 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAssign([NotNull] SimpleLangParser.AssignContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SimpleLangParser.type"/>.
 	/// </summary>
@@ -68,11 +86,11 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitDimensions([NotNull] SimpleLangParser.DimensionsContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.indexList"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context);
+	Result VisitIndexList([NotNull] SimpleLangParser.IndexListContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SimpleLangParser.argList"/>.
 	/// </summary>
@@ -86,27 +104,58 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBlock([NotNull] SimpleLangParser.BlockContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// Visit a parse tree produced by the <c>Str</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitClassDecl([NotNull] SimpleLangParser.ClassDeclContext context);
+	Result VisitStr([NotNull] SimpleLangParser.StrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// Visit a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context);
+	Result VisitMulDiv([NotNull] SimpleLangParser.MulDivContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SimpleLangParser.expr"/>.
+	/// Visit a parse tree produced by the <c>AddSub</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpr([NotNull] SimpleLangParser.ExprContext context);
+	Result VisitAddSub([NotNull] SimpleLangParser.AddSubContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="SimpleLangParser.varRef"/>.
+	/// Visit a parse tree produced by the <c>Parens</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVarRef([NotNull] SimpleLangParser.VarRefContext context);
+	Result VisitParens([NotNull] SimpleLangParser.ParensContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Real</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReal([NotNull] SimpleLangParser.RealContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>VarRefLabel</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Int</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitInt([NotNull] SimpleLangParser.IntContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.varReference"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVarReference([NotNull] SimpleLangParser.VarReferenceContext context);
 }

@@ -60,6 +60,30 @@ public partial class SimpleLangBaseListener : ISimpleLangListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitStat([NotNull] SimpleLangParser.StatContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterClassDecl([NotNull] SimpleLangParser.ClassDeclContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitClassDecl([NotNull] SimpleLangParser.ClassDeclContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="SimpleLangParser.varDecl"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -83,6 +107,18 @@ public partial class SimpleLangBaseListener : ISimpleLangListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitAssign([NotNull] SimpleLangParser.AssignContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SimpleLangParser.type"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -108,17 +144,17 @@ public partial class SimpleLangBaseListener : ISimpleLangListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDimensions([NotNull] SimpleLangParser.DimensionsContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.indexList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context) { }
+	public virtual void EnterIndexList([NotNull] SimpleLangParser.IndexListContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SimpleLangParser.methodDecl"/>.
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.indexList"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitMethodDecl([NotNull] SimpleLangParser.MethodDeclContext context) { }
+	public virtual void ExitIndexList([NotNull] SimpleLangParser.IndexListContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SimpleLangParser.argList"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -144,53 +180,115 @@ public partial class SimpleLangBaseListener : ISimpleLangListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitBlock([NotNull] SimpleLangParser.BlockContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// Enter a parse tree produced by the <c>Str</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterClassDecl([NotNull] SimpleLangParser.ClassDeclContext context) { }
+	public virtual void EnterStr([NotNull] SimpleLangParser.StrContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SimpleLangParser.classDecl"/>.
+	/// Exit a parse tree produced by the <c>Str</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitClassDecl([NotNull] SimpleLangParser.ClassDeclContext context) { }
+	public virtual void ExitStr([NotNull] SimpleLangParser.StrContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// Enter a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context) { }
+	public virtual void EnterMulDiv([NotNull] SimpleLangParser.MulDivContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SimpleLangParser.classVarDecl"/>.
+	/// Exit a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitClassVarDecl([NotNull] SimpleLangParser.ClassVarDeclContext context) { }
+	public virtual void ExitMulDiv([NotNull] SimpleLangParser.MulDivContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SimpleLangParser.expr"/>.
+	/// Enter a parse tree produced by the <c>AddSub</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterExpr([NotNull] SimpleLangParser.ExprContext context) { }
+	public virtual void EnterAddSub([NotNull] SimpleLangParser.AddSubContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SimpleLangParser.expr"/>.
+	/// Exit a parse tree produced by the <c>AddSub</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitExpr([NotNull] SimpleLangParser.ExprContext context) { }
+	public virtual void ExitAddSub([NotNull] SimpleLangParser.AddSubContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="SimpleLangParser.varRef"/>.
+	/// Enter a parse tree produced by the <c>Parens</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterVarRef([NotNull] SimpleLangParser.VarRefContext context) { }
+	public virtual void EnterParens([NotNull] SimpleLangParser.ParensContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="SimpleLangParser.varRef"/>.
+	/// Exit a parse tree produced by the <c>Parens</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitVarRef([NotNull] SimpleLangParser.VarRefContext context) { }
+	public virtual void ExitParens([NotNull] SimpleLangParser.ParensContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Real</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterReal([NotNull] SimpleLangParser.RealContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Real</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitReal([NotNull] SimpleLangParser.RealContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>VarRefLabel</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>VarRefLabel</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Int</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInt([NotNull] SimpleLangParser.IntContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Int</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInt([NotNull] SimpleLangParser.IntContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.varReference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVarReference([NotNull] SimpleLangParser.VarReferenceContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.varReference"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVarReference([NotNull] SimpleLangParser.VarReferenceContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>
