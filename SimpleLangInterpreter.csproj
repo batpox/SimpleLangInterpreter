@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Compile Remove="Grammar\temp.cs" />
+    <Compile Remove="SimpleLangCustomVisitor-Old05Jun2024.cs" />
   </ItemGroup>
 
   <ItemGroup>

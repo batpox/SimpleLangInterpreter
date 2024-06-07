@@ -10,7 +10,7 @@ stat:   varDecl
     ;
 
 
-classDecl: 'Class' ID '{' classVarDecl* '}' ;
+classDecl: 'Class' ID '{' classVarDecl* '}' ';' ;
 classVarDecl: type ID ('[' dimensions ']')? ';' ;
 varDecl: type ID ('[' dimensions ']')? ('=' expr)? ';' ;
 assign: varReference ('[' indexList ']')? '=' expr ';' ;

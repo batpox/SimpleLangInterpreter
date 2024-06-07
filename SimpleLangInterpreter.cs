@@ -13,7 +13,7 @@ namespace SimpleLangInterpreter
     {
         public static void Run(string[] args)
         {
-
+            // Test cases
             var input1 = "int foo = (45 - 5 + (5*4))/20; int bar = foo+20;"; // answers: foo=3 bar=23
             var input2 = @"int foo = (45 - 5 + (5*4))/20;  
                 real bar = foo+20.1
@@ -25,8 +25,10 @@ namespace SimpleLangInterpreter
                 int wiz = foo + bar + 25; 
                 "; // Example input
 
-            var input10 = @"Class myClass1{int x; real y; string z; };
+            var input10 = @" int bar = 50*23/4; 
+                Class myClass1{int x; real y; string z; };
                 myClass1 fooClass;
+                fooClass.x = 47;
                 int foo= fooClass.x;
             ";
 
@@ -34,7 +36,9 @@ namespace SimpleLangInterpreter
 
             try
             {
-                var inputStream = new AntlrInputStream(input10);
+                string testInput = input10;
+                Console.Write($"Input: [{testInput}]");
+                var inputStream = new AntlrInputStream(testInput);
                 var lexer = new SimpleLangLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(lexer);
                 var parser = new SimpleLangParser(commonTokenStream);
@@ -44,14 +48,15 @@ namespace SimpleLangInterpreter
                 var result = visitor.Visit(context);
 
                 // Example to print variable values
+                Console.WriteLine($"Writing {visitor.Variables.Count()} Variables:");
                 foreach (var variable in visitor.Variables)
                 {
                     if (variable.Value.Type.StartsWith("MyClass"))
                     {
-                        Console.WriteLine($"{variable.Key} ({variable.Value.Type}):");
+                        Console.WriteLine($"  Key={variable.Key} Type=({variable.Value.Type}):");
                         foreach (var field in (Dictionary<string, Variable>)variable.Value.Value)
                         {
-                            Console.WriteLine($"  {field.Key} ({field.Value.Type}) = {field.Value.Value}");
+                            Console.WriteLine($"  Field: Key={field.Key} Type=({field.Value.Type}) Value={field.Value.Value}");
                         }
                     }
                     else
