@@ -18,7 +18,10 @@ visitor code, such as 'SimpleLangCustomVisitor.cs'
 
 *NEVER* manually alter the generated code!
 
-java -version => java version "1.8.0_411"
-Java(TM) SE Runtime Environment (build 1.8.0_411-b09)
+C:\Users\dan_h\source\repos\SimpleLangInterpreter\Grammar>java -version
+java version "22.0.1" 2024-04-16
+Java(TM) SE Runtime Environment (build 22.0.1+8-16)
+Java HotSpot(TM) 64-Bit Server VM (build 22.0.1+8-16, mixed mode, sharing)
+
 
 
