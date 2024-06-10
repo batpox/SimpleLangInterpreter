@@ -15,7 +15,31 @@ public class Variable
         Type = type;
         Value = value;
     }
+
+    public override string ToString()
+    {
+        return Value == null ? string.Empty : (Value is Dictionary<string, Variable> dictionary ? ToDictionaryString(dictionary) : Value.ToString());
+    }
+
+    private string ToDictionaryString(Dictionary<string, Variable> dictionary)
+    {
+        StringBuilder result = new StringBuilder();
+        result.Append('[');
+
+        foreach (var kvp in dictionary)
+        {
+            if (result.Length > 1)
+            {
+                result.Append(", ");
+            }
+            result.Append($"{kvp.Key}={kvp.Value}");
+        }
+
+        result.Append(']');
+        return result.ToString();
+    }
 }
+
 
 public class ClassType
 {

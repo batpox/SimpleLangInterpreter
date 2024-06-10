@@ -1,5 +1,11 @@
 A simple language interpreter demonstrating the use of ANTLR G4 file and C# Visitor pattern to build a simple language interpreter.
 
+Version:
+Targets: .NET (Core) 8
+C#: 8
+ANTLR: 4.13.1
+Java: Version 8 Update 411 (2024)
+
 Examine the .g4 for specifics, but basically the language allows simple types (int, real, string) and a composite type (Class), where
 the members are simple types and accessed with the standard dot notation.
 
@@ -20,8 +26,6 @@ myClass1 fooClass;
 fooClass.x = 47;
 int foo= fooClass.x;
 
-Versions: ANTLR 4.13.1
-Java: Version 8 Update 411 (2024)
 
 Generation of Visitor pattern C# code.
 java -jar antlr-4.13.1-complete.jar -Dlanguage=CSharp -visitor -o Generated SimpleLang.g4

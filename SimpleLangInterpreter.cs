@@ -51,18 +51,7 @@ namespace SimpleLangInterpreter
                 Console.WriteLine($"Writing {visitor.Variables.Count()} Variables:");
                 foreach (var variable in visitor.Variables)
                 {
-                    if (variable.Value.Type.StartsWith("MyClass"))
-                    {
-                        Console.WriteLine($"  Key={variable.Key} Type=({variable.Value.Type}):");
-                        foreach (var field in (Dictionary<string, Variable>)variable.Value.Value)
-                        {
-                            Console.WriteLine($"  Field: Key={field.Key} Type=({field.Value.Type}) Value={field.Value.Value}");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{variable.Key} ({variable.Value.Type}) = {variable.Value.Value}");
-                    }
+                    Console.WriteLine($"{variable.Key} ({variable.Value.Type}) = {variable}");
                 }
 
             }
