@@ -4,10 +4,12 @@ Version:
 Targets: .NET (Core) 8
 C#: 8
 ANTLR: 4.13.1
-Java: Version 8 Update 411 (2024)
+Java: Version 22.0.1 (2024)
 
 Examine the .g4 for specifics, but basically the language allows simple types (int, real, string) and a composite type (Class), where
 the members are simple types and accessed with the standard dot notation.
+
+Output is written as file interpretorOutput.txt to the user's documentation folder.
 
 The standard binary operators +, -, /, * are implemented along with parens.
 
@@ -26,10 +28,8 @@ myClass1 fooClass;
 fooClass.x = 47;
 int foo= fooClass.x;
 
-
 Generation of Visitor pattern C# code.
 java -jar antlr-4.13.1-complete.jar -Dlanguage=CSharp -visitor -o Generated SimpleLang.g4
-The java is version 22.0.1
 
 Workflow:
 The grammar/lexer .g4 is within the Grammar folder, and generated files are created in the Generated folder under Grammar.
