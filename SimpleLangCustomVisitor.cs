@@ -18,7 +18,7 @@ public class Variable
 
     public override string ToString()
     {
-        return Value == null ? string.Empty : (Value is Dictionary<string, Variable> dictionary ? ToDictionaryString(dictionary) : Value.ToString());
+        return Value == null ? "(null)" : (Value is Dictionary<string, Variable> dictionary ? ToDictionaryString(dictionary) : Value.ToString());
     }
 
     private string ToDictionaryString(Dictionary<string, Variable> dictionary)
