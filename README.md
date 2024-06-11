@@ -39,8 +39,8 @@ Following the ANTLR recommendations, the generated files are *never* modified. R
 The console output is redirected to a interpreterOutput.txt file in the user's documentation foldere. 
 
 This is ongoing. Next steps: 
-A. Adding complex type
-B. Language for motion description
+A. Adding language error handling
+B. Adding Test project
 
 Enjoy!
 
