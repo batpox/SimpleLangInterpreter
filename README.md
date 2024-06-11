@@ -36,7 +36,7 @@ The grammar/lexer .g4 is within the Grammar folder, and generated files are crea
 When satisfied with the results, copy the .cs Generated files up to the top-level Generated folder for building/debugging/running.
 Following the ANTLR recommendations, the generated files are *never* modified. Rather the methods are overwritten in the SimpleLangCustomVisitor.cs file.
 
-The output is written to a c:\temp\interpreterOutput.txt (in main of program.cs).
+The console output is redirected to a interpreterOutput.txt file in the user's documentation foldere. 
 
 This is ongoing. Next steps: 
 A. Adding complex type

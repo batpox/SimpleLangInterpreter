@@ -20,10 +20,12 @@ namespace SimpleLangInterpreter
                 ;";// answers: foo=3 bar=23.1
 
             // String, int, real, parens foo=45, x='wassup' bar=3/88 wiz=74
-            var input3 = @"int foo = 45;  string x = ""wassup""; 
+            var input3 = @"int foo = 45;  string x = ""SnowCrash""; 
                 real bar = (77 - 5 + (5*5)) / 25; 
                 int wiz = foo + bar + 25; 
                 "; // Example input
+
+            string input9 = "int bar = 66; class MyClass1 { int x; string y; }; MyClass1 obj";
 
             var input10 = @" int bar = 50*23/4; 
                 Class myClass1{int x; real y; string z; };
@@ -32,11 +34,34 @@ namespace SimpleLangInterpreter
                 int foo= fooClass.x;
             ";
 
-            string input9 = "int bar = 66; class MyClass1 { int x; string y; }; MyClass1 obj";
+            var input11 = @" int bar = 50*23/4; 
+                Class myClass1{int a; real b; string c; };
+                Class myClass2{int x; real b; myClass1 c1; };
+
+                myClass1 C1;
+                C1.a = 47;
+                C1.b = 3.14159;
+                C1.c = ""Diamond Age"";
+
+                int foo= C1.a;
+
+                myClass2 C2;
+                C2.x = foo;
+                C2.c1 = C1;
+            ";
+
+            // Error inputs
+            var input100 = @" int bar = 50*23/4; 
+                Class myClass1{int x; real y; string z; ;
+                myClass1 fooClass;
+                fooClass.x = 47;
+                int foo= fooClass.x;
+            ";
+
 
             try
             {
-                string testInput = input10;
+                string testInput = input11;
                 Console.Write($"Input: [{testInput}]");
                 var inputStream = new AntlrInputStream(testInput);
                 var lexer = new SimpleLangLexer(inputStream);
