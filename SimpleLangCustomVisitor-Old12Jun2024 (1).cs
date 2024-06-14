@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 public class Variable
@@ -213,92 +214,7 @@ public class SimpleLangCustomVisitor : SimpleLangBaseVisitor<object>
         return context.STRING().GetText().Trim('"');
     }
 
-    ////public override object VisitTrue(SimpleLangParser.TrueContext context)
-    ////{
-    ////    Console.WriteLine("VisitTrue: true");
-    ////    return true;
-    ////}
-
-    ////public override object VisitFalse(SimpleLangParser.FalseContext context)
-    ////{
-    ////    Console.WriteLine("VisitFalse: false");
-    ////    return false;
-    ////}
-
-    public override object VisitNot(SimpleLangParser.NotContext context)
-    {
-        var value = Visit(context.expr());
-        if (value is bool booleanValue)
-        {
-            return !booleanValue;
-        }
-        throw new InvalidOperationException("Unary 'not' operator can only be applied to boolean values.");
-    }
-
-    public override object VisitIfStat(SimpleLangParser.IfStatContext context)
-    {
-        var condition = Visit(context.logicalExpr());
-        if (condition is bool conditionValue)
-        {
-            if (conditionValue)
-            {
-                return Visit(context.block(0));
-            }
-            else if (context.block().Length > 1)
-            {
-                return Visit(context.block(1));
-            }
-        }
-        else
-        {
-            throw new InvalidOperationException("If condition must evaluate to a boolean value.");
-        }
-        return null;
-    }
-    public override object VisitComparison(SimpleLangParser.ComparisonContext context)
-    {
-        var left = Visit(context.expr(0));
-        var right = Visit(context.expr(1));
-        string op = context.compOp().GetText();
-
-        Console.WriteLine($"VisitComparison: {left} {op} {right}");
-        return EvaluateLogicalOperation(left, right, op);
-    }
-
-    ////private object EvaluateLogicalOperation(object left, object right, string op)
-    ////{
-    ////    // Implement your logic for evaluating the logical operation
-    ////    // Example:
-    ////    bool leftBool = Convert.ToBoolean(left);
-    ////    bool rightBool = Convert.ToBoolean(right);
-
-    ////    switch (op)
-    ////    {
-    ////        case "==":
-    ////            return leftBool == rightBool;
-    ////        case "!=":
-    ////            return leftBool != rightBool;
-    ////        case ">":
-    ////            return leftBool && !rightBool;
-    ////        case "<":
-    ////            return !leftBool && rightBool;
-    ////        // Add other operations as needed
-    ////        default:
-    ////            throw new InvalidOperationException($"Unknown operator: {op}");
-    ////    }
-    ////}
-
-////public override object VisitLogicalExpr(SimpleLangParser.LogicalExprContext context)
-////    {
-////        var left = Visit(context.expr(0));
-////        var right = Visit(context.expr(1));
-////        string op = context.compOp().GetText();
-
-////        Console.WriteLine($"VisitLogicalExpr: {left} {op} {right}");
-////        return EvaluateLogicalOperation(left, right, op);
-////    }
-
-    public override object VisitVarRef(SimpleLangParser.VarRefContext context)
+    public override object VisitVarRefLabel(SimpleLangParser.VarRefLabelContext context)
     {
         string varName = context.varReference().ID(0).GetText();
 
@@ -401,63 +317,6 @@ public class SimpleLangCustomVisitor : SimpleLangBaseVisitor<object>
                     if (rightIntMixed == 0)
                         throw new DivideByZeroException();
                     return leftDoubleMixed / rightIntMixed;
-                default:
-                    throw new InvalidOperationException($"Unknown operator: {op}");
-            }
-        }
-        throw new InvalidOperationException($"Unsupported operand types: {left.GetType()} and {right.GetType()}");
-    }
-
-    private object EvaluateLogicalOperation(object left, object right, string op)
-    {
-        if (left is int leftInt && right is int rightInt)
-        {
-            switch (op)
-            {
-                case ">":
-                    return leftInt > rightInt;
-                case "<":
-                    return leftInt < rightInt;
-                case ">=":
-                    return leftInt >= rightInt;
-                case "<=":
-                    return leftInt <= rightInt;
-                case "==":
-                    return leftInt == rightInt;
-                case "!=":
-                    return leftInt != rightInt;
-                default:
-                    throw new InvalidOperationException($"Unknown operator: {op}");
-            }
-        }
-        else if (left is double leftDouble && right is double rightDouble)
-        {
-            switch (op)
-            {
-                case ">":
-                    return leftDouble > rightDouble;
-                case "<":
-                    return leftDouble < rightDouble;
-                case ">=":
-                    return leftDouble >= rightDouble;
-                case "<=":
-                    return leftDouble <= rightDouble;
-                case "==":
-                    return leftDouble == rightDouble;
-                case "!=":
-                    return leftDouble != rightDouble;
-                default:
-                    throw new InvalidOperationException($"Unknown operator: {op}");
-            }
-        }
-        else if (left is bool leftBool && right is bool rightBool)
-        {
-            switch (op)
-            {
-                case "==":
-                    return leftBool == rightBool;
-                case "!=":
-                    return leftBool != rightBool;
                 default:
                     throw new InvalidOperationException($"Unknown operator: {op}");
             }

@@ -11,7 +11,7 @@ namespace SimpleLangInterpreter
 {
     static class SimpleLangInterpreter
     {
-        public static void Run(string[] args)
+        public static void Run(string programPath, string logPath, string debugPath)
         {
             // Test cases
             var input1 = "int foo = (45 - 5 + (5*4))/20; int bar = foo+20;"; // answers: foo=3 bar=23
@@ -61,16 +61,28 @@ namespace SimpleLangInterpreter
 
             try
             {
-                string testInput = input11;
+                string testInput = input2;
                 Console.Write($"Input: [{testInput}]");
                 var inputStream = new AntlrInputStream(testInput);
                 var lexer = new SimpleLangLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(lexer);
                 var parser = new SimpleLangParser(commonTokenStream);
+
+                var errorListener = new CustomErrorListener();
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(errorListener);
+
                 var context = parser.prog();
 
                 var visitor = new SimpleLangCustomVisitor();
                 var result = visitor.Visit(context);
+
+                foreach (var error in errorListener.Errors)
+                {
+                    visitor.Errors.Add(error);
+                }
+
+                GenerateOutputFile(visitor.Lines, visitor.Errors);
 
                 // Example to print variable values
                 Console.WriteLine($"Writing {visitor.Variables.Count()} Variables:");
@@ -82,9 +94,40 @@ namespace SimpleLangInterpreter
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception={ex.Message}\n{ex.StackTrace}");
+                Logging.LogIt($"Exception={ex.Message}\n{ex.StackTrace}");
             }
         }
+
+        /// <summary>
+        /// Write an output file listing the code and any errors 
+        /// that occurred.
+        /// </summary>
+        /// <param name="lines"></param>
+        /// <param name="errors"></param>
+        private static void GenerateOutputFile(List<string> lines, List<string> errors)
+        {
+            // Get the path to the user's Documents folder
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Define the output file path
+            string outputFilePath = Path.Combine(documentsPath, "CodeOutput.txt");
+
+            using (var writer = new StreamWriter(outputFilePath))
+            {
+                writer.WriteLine("Parsed Lines:");
+                foreach (var line in lines)
+                {
+                    writer.WriteLine(line);
+                }
+
+                writer.WriteLine("\nErrors:");
+                foreach (var error in errors)
+                {
+                    writer.WriteLine(error);
+                }
+            }
+        }
+
 
 
     }

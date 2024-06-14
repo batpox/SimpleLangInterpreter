@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SimpleLangInterpreter": {
+      "commandName": "Project",
+      "commandLineArgs": "/script:test1.sl"
+    }
+  }
+}

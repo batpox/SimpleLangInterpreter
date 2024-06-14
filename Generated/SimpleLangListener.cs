@@ -151,6 +151,16 @@ public interface ISimpleLangListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitBlock([NotNull] SimpleLangParser.BlockContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.ifStat"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfStat([NotNull] SimpleLangParser.IfStatContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.ifStat"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfStat([NotNull] SimpleLangParser.IfStatContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>Str</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
@@ -163,17 +173,41 @@ public interface ISimpleLangListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitStr([NotNull] SimpleLangParser.StrContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>MulDiv</c>
+	/// Enter a parse tree produced by the <c>VarRef</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterMulDiv([NotNull] SimpleLangParser.MulDivContext context);
+	void EnterVarRef([NotNull] SimpleLangParser.VarRefContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>MulDiv</c>
+	/// Exit a parse tree produced by the <c>VarRef</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitMulDiv([NotNull] SimpleLangParser.MulDivContext context);
+	void ExitVarRef([NotNull] SimpleLangParser.VarRefContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Not</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNot([NotNull] SimpleLangParser.NotContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Not</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNot([NotNull] SimpleLangParser.NotContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Bool</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBool([NotNull] SimpleLangParser.BoolContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Bool</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBool([NotNull] SimpleLangParser.BoolContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>AddSub</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
@@ -186,6 +220,18 @@ public interface ISimpleLangListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitAddSub([NotNull] SimpleLangParser.AddSubContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterMulDiv([NotNull] SimpleLangParser.MulDivContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitMulDiv([NotNull] SimpleLangParser.MulDivContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>Parens</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
@@ -211,18 +257,6 @@ public interface ISimpleLangListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitReal([NotNull] SimpleLangParser.RealContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>VarRefLabel</c>
-	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context);
-	/// <summary>
-	/// Exit a parse tree produced by the <c>VarRefLabel</c>
-	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context);
-	/// <summary>
 	/// Enter a parse tree produced by the <c>Int</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
@@ -234,6 +268,28 @@ public interface ISimpleLangListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitInt([NotNull] SimpleLangParser.IntContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>Comparison</c>
+	/// labeled alternative in <see cref="SimpleLangParser.logicalExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterComparison([NotNull] SimpleLangParser.ComparisonContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>Comparison</c>
+	/// labeled alternative in <see cref="SimpleLangParser.logicalExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitComparison([NotNull] SimpleLangParser.ComparisonContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="SimpleLangParser.compOp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterCompOp([NotNull] SimpleLangParser.CompOpContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="SimpleLangParser.compOp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitCompOp([NotNull] SimpleLangParser.CompOpContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="SimpleLangParser.varReference"/>.
 	/// </summary>

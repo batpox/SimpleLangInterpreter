@@ -16,6 +16,7 @@
   <ItemGroup>
     <Compile Remove="Grammar\temp.cs" />
     <Compile Remove="SimpleLangCustomVisitor-Old05Jun2024.cs" />
+    <Compile Remove="SimpleLangCustomVisitor-Old12Jun2024 %281%29.cs" />
   </ItemGroup>
 
   <ItemGroup>

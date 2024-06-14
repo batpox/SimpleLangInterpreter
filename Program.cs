@@ -1,19 +1,17 @@
-﻿internal class Program
+﻿using Antlr4.Runtime.Misc;
+using SimpleLangInterpreter;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+internal class Program
 {
     private static void Main(string[] args)
     {
-        // Get the path to the user's Documents folder
-        string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-        // Define the output file path
-        string outputFilePath = Path.Combine(documentsPath, "interpreterOutput.txt");
-
-        using (var writer = new StreamWriter(outputFilePath))
+        if (  ProcessCommandLine.Parse(args, out SimpleLangContext context))
         {
-            Console.SetOut(writer);
-            Console.WriteLine("Simple Language runner.");
 
-            SimpleLangInterpreter.SimpleLangInterpreter.Run(args);
         }
     }
 }

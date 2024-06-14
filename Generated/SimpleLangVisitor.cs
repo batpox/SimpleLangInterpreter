@@ -104,6 +104,12 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitBlock([NotNull] SimpleLangParser.BlockContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.ifStat"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIfStat([NotNull] SimpleLangParser.IfStatContext context);
+	/// <summary>
 	/// Visit a parse tree produced by the <c>Str</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
@@ -111,12 +117,26 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitStr([NotNull] SimpleLangParser.StrContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>MulDiv</c>
+	/// Visit a parse tree produced by the <c>VarRef</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitMulDiv([NotNull] SimpleLangParser.MulDivContext context);
+	Result VisitVarRef([NotNull] SimpleLangParser.VarRefContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Not</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNot([NotNull] SimpleLangParser.NotContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Bool</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBool([NotNull] SimpleLangParser.BoolContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>AddSub</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
@@ -124,6 +144,13 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitAddSub([NotNull] SimpleLangParser.AddSubContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>MulDiv</c>
+	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitMulDiv([NotNull] SimpleLangParser.MulDivContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>Parens</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
@@ -139,19 +166,25 @@ public interface ISimpleLangVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitReal([NotNull] SimpleLangParser.RealContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>VarRefLabel</c>
-	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitVarRefLabel([NotNull] SimpleLangParser.VarRefLabelContext context);
-	/// <summary>
 	/// Visit a parse tree produced by the <c>Int</c>
 	/// labeled alternative in <see cref="SimpleLangParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitInt([NotNull] SimpleLangParser.IntContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>Comparison</c>
+	/// labeled alternative in <see cref="SimpleLangParser.logicalExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitComparison([NotNull] SimpleLangParser.ComparisonContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="SimpleLangParser.compOp"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCompOp([NotNull] SimpleLangParser.CompOpContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="SimpleLangParser.varReference"/>.
 	/// </summary>
